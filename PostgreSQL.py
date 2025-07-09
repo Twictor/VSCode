@@ -1,6 +1,7 @@
 import psycopg
 from dataclasses import dataclass
 from typing import List
+from typing import Dict, Any
 
 
 # Database connection setup
@@ -13,6 +14,14 @@ def get_connection():
         port="5432",
         autocommit=True
     )
+
+
+# Django settings
+REST_FRAMEWORK: Dict[str, Any] = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+}
+
+JWT_SECRET = 'your-very-secret-key-here'
 
 
 @dataclass
@@ -370,7 +379,7 @@ if __name__ == "__main__":
     # Create users
     user1 = User.create("John Doe", "+3809365211", "USER")
     user2 = User.create("Marry", "+380934567890", "USER")
-    
+     
     # Get all users
     all_users = User.get_all()
     print("All users:")
